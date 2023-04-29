@@ -1,0 +1,65 @@
+.logouts{
+    height: 90vh;
+    position: fixed;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(2px);
+
+
+}
+.logout{
+     background-color: aquamarine;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     gap: 50px;
+     padding: 20px;
+     border-radius: 10px;
+}
+.buttons{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 25vw;
+}
+.ok{
+    color: red;
+    height: 50px;
+    width: 80px;
+    cursor: pointer;
+    border-radius: 10px;
+
+}
+.cancel{
+    color: green;
+    height: 50px;
+    width: 80px;
+    cursor: pointer;
+    border-radius: 10px;
+}
+.h1{
+    width: 25vw;
+    text-align: center;
+    
+}
+
+@media screen and (max-width:600px) {
+    .buttons{
+        gap: 30px;
+        width: 38vw;
+    }
+    .ok{
+        padding-left: 20px;
+        padding-right: 20px;
+        height: 45px;
+    }
+    .cancel{
+        height: 45px;
+    }
+    .h1{
+        width: 50vw;
+    }
+}

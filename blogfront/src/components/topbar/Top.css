@@ -1,0 +1,118 @@
+.top{
+    width:100%;
+    height: 56px;
+    background-color:#2d2d2d;
+    position: sticky;
+    top:0;
+    display: flex;
+    align-items: center;
+    font-family: 'Josefin Sans', sans-serif;
+    z-index: 999;
+}
+.topleft,.topright{
+    flex: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.topcenter{
+    flex: 6;
+
+}
+.topIcons{
+    font-size: 20px;
+    margin-right: 10px;
+    color:#fff;
+    cursor: pointer;
+}
+.topImg{
+    height: 45px;
+    width: 45px;
+    margin-top: 2px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #fca211;
+}
+.topImg:hover{
+    border: 2px solid white;
+}
+.topList{
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.topListItem{
+    margin-right: 20px;
+    font-size: 18px;
+    font-size: 300;
+    cursor: pointer;
+}
+.topSearchIcons{
+    font-size: 18px;
+    color: #666;
+    cursor: pointer;
+    margin-left: 15px;
+}
+.center{
+    color: teal;
+    font-size: 35px;
+    margin-left: 47.7%;
+}
+.logoutuser{
+    margin-right: 20px;
+    font-size: 18px;
+    font-size: 300;
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+.active{
+    text-decoration: none;
+    color: #fca311;
+}
+.active1{
+    margin-right: 20px;
+    font-size: 18px;
+    font-size: 300;
+    cursor: pointer;
+    border: none;
+    background: none;
+    color: #fca311;
+}
+.link:hover{
+    color: rgb(144, 117, 117);
+}
+.logoutuser:hover{
+    color: rgb(144, 117, 117);
+}
+
+@media screen and (max-width:600px){
+    .top{
+    width:100%;
+    height: 56px;
+    background-color:#2d2d2d;
+    position: sticky;
+    display: flex;
+    align-items: center;
+    font-family: 'Josefin Sans', sans-serif;
+    z-index: 999;
+    }
+    .topright{
+        display: flex;
+    }
+    .topIcons{
+        display: none;
+    }
+    .topSearchIcons{
+        display: none;
+    }
+    .topList li:nth-child(3){
+        display: none;
+    }
+    .center{
+        margin-left: 41%;
+    }
+    
+}

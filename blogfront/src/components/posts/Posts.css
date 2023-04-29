@@ -1,0 +1,13 @@
+.posts{
+    display: grid;
+    margin: 20px;
+    
+}
+@media screen and (max-width:600px){
+    .posts{
+        width: 97%;
+        display: flex;
+        justify-content: center;
+    }
+    
+}

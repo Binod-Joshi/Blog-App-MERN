@@ -1,0 +1,52 @@
+.profile{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+.nameofuser{
+    display: flex;
+    justify-content: center;
+}
+.contacct{
+    display: none;
+}
+.profileLink{
+    text-decoration: none;
+    color:  rgb(142, 175, 205);
+}
+@media screen and (max-width: 1024px) {
+
+    .postt{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+  }
+
+  @media screen and (max-width: 1024px) {
+    
+    .postOfTheUser{
+        display: flex;
+        justify-content: center;
+        margin-left: -30px;
+      }
+  }
+  
+  @media screen and (max-width: 600px) {
+    .center2{
+        display: flex;
+        margin-top: 5px;
+        justify-content: center;
+    }
+    .contacct{
+        width: fit-content;
+        display: flex;
+        margin-left: 36vw;
+        padding: 4px;
+        border: 1px solid black;
+        border-radius: 3px;
+        background-color: rgb(0, 30, 255);
+    }
+  }
+  
