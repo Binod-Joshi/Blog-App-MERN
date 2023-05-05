@@ -8,7 +8,6 @@ export const ContextPro = ({ children }) => {
   const storedUser = JSON.parse(localStorage.getItem("user")); //The ContextPro component runs every time the UseGlobalContext component is used to access the context values.
   const [showPopUp, setShowPopUp] = useState(false);
   const [login, setLogin] = useState(false);
-  console.log(storedUser);
 
   const initialState = {
     isLoading: true,
@@ -48,7 +47,6 @@ export const ContextPro = ({ children }) => {
   const loginClicked = async ({ navigate, e, username, password }) => {
     e.preventDefault();
     setLogin(true);
-    console.log(username, password);
     let user = await fetch("http://localhost:5000/auth/login", {
       method: "post",
       body: JSON.stringify({ username, password }),
@@ -75,7 +73,6 @@ export const ContextPro = ({ children }) => {
       console.log(state.error);
       setTimeoutsId(newTimeoutId);
     }
-    console.log(user);
   };
 
   //logout
@@ -98,6 +95,7 @@ export const ContextPro = ({ children }) => {
     password,
     profilePic,
   }) => {
+    console.log(id)
     const fields = password
       ? { username, email, password, profilePic }
       : { username, email, profilePic };
@@ -129,6 +127,10 @@ export const ContextPro = ({ children }) => {
     dispatch({ type: "posts", payload: allposts });
   };
 
+  const updateTotalPosts = async (updatedPost) => {
+    dispatch({type:"posts",payload:updatedPost})
+  }
+
   return (
     <div>
       <Context.Provider
@@ -143,6 +145,7 @@ export const ContextPro = ({ children }) => {
           setShowPopUp,
           getTotalPost,
           login,
+          updateTotalPosts,
         }}
       >
         {children}

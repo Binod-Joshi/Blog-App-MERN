@@ -8,6 +8,7 @@ import DeleteAccount from "./components/pages/setting/DeleteAccount";
 import Setting from "./components/pages/setting/Setting";
 import Single from "./components/pages/single/Single";
 import Write from "./components/pages/write/Write";
+import SIngleComments from "./components/post/SIngleComments";
 import PrivateComponent from "./components/privatecomponent/PrivateComponent";
 import Profile from "./components/profile/Profile";
 import Topbar from "./components/topbar/Topbar";
@@ -24,7 +25,6 @@ function App() {
   const redirectHandler = (link) =>{
     window.open(link,'_blank');
   }
-  console.log(user)
   return (
     <Router>
       <Topbar />
@@ -37,6 +37,7 @@ function App() {
           <Route path="/profile" element={<Profile/>} />
           <Route path="/contact" element={<Contact redirectHandler={redirectHandler} />} />
           <Route path="/post/:postId" element={<Single />} />
+          <Route path="/comment/:postId" element={<SIngleComments/>} />
         </Route>
         <Route path="/register" element={ <Register />} />
         <Route path="/login" element={<Login />}/>  

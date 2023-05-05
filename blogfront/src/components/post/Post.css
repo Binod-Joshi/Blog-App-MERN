@@ -129,7 +129,28 @@
       transform: scale(0);
     }
   }
+  .likesAndComments{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
   
+  .likes{
+    display: flex;
+    align-items: flex-start;
+    margin-top: 5px;
+    cursor: pointer;
+  }
+  .likes-count{
+    margin-left: 5px;
+  }
+  .commentIcon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
 
   /* for tablet */
   @media screen and (max-width: 1024px) {
