@@ -17,7 +17,6 @@ router.post("/", async (req, res) => {
 router.put("/:id", async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
-    console.log(post)
     if (post.userId === req.body.id) {
       try {
         const updatedPost = await Post.findByIdAndUpdate(
@@ -103,7 +102,7 @@ router.post("/likes",async(req,res) => {
     }
 
     if (post.likes.includes(userId)) {
-      return res.status(400).send({ error: 'User already liked post' });
+      return res.status(200).send({ error: 'User already liked post' });
     }
 
     const updatedPost = await Post.findByIdAndUpdate(postId,{
@@ -111,7 +110,6 @@ router.post("/likes",async(req,res) => {
     },
     { new: true }
     );
-    console.log(updatedPost)
     res.status(200).json(updatedPost)
   }
    catch (error) {
@@ -129,14 +127,13 @@ router.post("/unlikes",async(req,res) => {
       return res.status(404).send({ error: 'Post not found' });
     }
     if (!post.likes.includes(userId)) {
-      return res.status(400).send({ error: 'User has not liked the post' });
+      return res.status(200).send({ error: 'User has not liked the post' });
     }
     const updatedPost = await Post.findByIdAndUpdate(postId,{
       $pull:{likes:userId}
     },
     { new:true }
     )
-    console.log("unlike--",updatedPost);
     res.status(200).json(updatedPost);
   } catch (error) {
     console.log(error);
@@ -171,7 +168,6 @@ router.post("/comments",async(req,res) => {
 // to delete comment
 router.post("/deleteComment",async(req,res) => {
   const {postId,userId,commentId} = req.body;
-  console.log(postId,userId,commentId);
   try {
     const updatedPost = await Post.findByIdAndUpdate(postId,{
       $pull:{
@@ -180,7 +176,6 @@ router.post("/deleteComment",async(req,res) => {
     },
     { new:true }
     ).populate("comments.postedBy", "_id username");
-    console.log(updatedPost);
     res.status(200).send(updatedPost);
   } catch (error) {
     console.log(error);

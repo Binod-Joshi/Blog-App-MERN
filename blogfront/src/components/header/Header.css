@@ -11,14 +11,10 @@
   }
   
   .headerTitleSm {
-    position: absolute;
-    top: 12%;
     font-size: 20px;
   }
   
   .headerTitleLg {
-    position: absolute;
-    top: 10%;
     font-size: 100px;
   }
   
@@ -61,7 +57,7 @@
   }
   .writeHeight{
     font-size: 22px;
-    margin-bottom: 118px;
+    margin-bottom: 4px;
   }
 .writeHeight1{
   font-size: 22px;
@@ -70,14 +66,7 @@
 
 @media screen and (max-width:1024px){
   .writeHeight{
-    margin-bottom: 125px;
+    margin-bottom: 4px;
   }
-  .headerTitleLg {
-    top:8%;
-  }
-}
-@media screen and (max-width:600px){
-  .headerTitleLg{
-    top:10%;
-  }
-}
+  
+};

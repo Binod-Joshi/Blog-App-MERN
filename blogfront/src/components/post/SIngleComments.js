@@ -4,23 +4,26 @@ import { AiOutlineSend } from "react-icons/ai";
 import {MdDelete} from "react-icons/md";
 import { UseGlobalContext } from "../context/Context";
 import { useParams } from "react-router-dom";
-
+import {socket} from "../socket/Socket";
 
 const SIngleComments = () => {
-    const {user,totalposts} = UseGlobalContext();
+    const {user,totalposts,comments,setcomments,updateTotalPosts} = UseGlobalContext();
     const [text, setText] = useState("");
     const [post, setPost] = useState("");
-    const [comments,setcomments] = useState([]);
     const params = useParams();
 
     useEffect(() => {
+      socket.emit("setup", user);
+      socket.on("connected");
+    },[]);
+    let posts = totalposts;
+
+    useEffect(() => {
         const singlePost = async () => {
-        //   setLoading(true);
           let post = await fetch(`http://localhost:5000/posts/${params.postId}`, {
             method: "get",
           });
           post = await post.json();
-        //   setLoading(false);
           setPost(post);
           if(post.comments){
             setcomments(post.comments);
@@ -31,7 +34,6 @@ const SIngleComments = () => {
 
     const insideSendComments =async() => {
         if(text){
-            console.log(text);
             setText("");
             let data = await fetch("http://localhost:5000/posts/comments",{
                 method:"post",
@@ -42,12 +44,36 @@ const SIngleComments = () => {
             })
             data = await data.json();
             if(data.comments){
-              setcomments(data.comments);
+              socket.emit("new comment",data.comments);
+              // setcomments(data.comments);
             }
         }else{
             console.log("enter somethings")
         }
     }
+
+    useEffect(() => {
+      if(posts.length >= 1 ){
+        socket.on("comment received",(newComments)=>{
+          setcomments(newComments);
+          // only for display realtime comment length in home but it is not working.
+          // let updatedPost = totalposts.map((postt) => {
+          //   if(postt._id ==post._id){
+          //     postt.comments = newComments
+          //     return postt;
+          //   }else{
+          //     return postt;
+          //   }
+          // });
+          // updateTotalPosts(updatedPost);
+        })
+      }
+
+      socket.on("comment delete",(newComments) =>{
+        setcomments(newComments);
+      })
+    })
+
     const commentHandler =async(event) => {
         if(event.key === "Enter" && text){
           insideSendComments();
@@ -66,9 +92,8 @@ const SIngleComments = () => {
           }
         })
         data = await data.json();
-        // console.log(data);
         if(data.comments){
-          setcomments(data.comments);
+          socket.emit("new deleteComment",data.comments);
         }
        } catch (error) {
         console.log(error)
@@ -85,9 +110,6 @@ const SIngleComments = () => {
       return;
     }
     }
-
-    console.log(post)
-    console.log(comments)
   return (
     <div>
       <div className="comments">

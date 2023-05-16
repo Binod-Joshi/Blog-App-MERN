@@ -1,14 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Post.css";
 import { UseGlobalContext } from "../context/Context";
 import { Link } from "react-router-dom";
-import { FcLike } from "react-icons/fc";
+import { GiSelfLove } from "react-icons/gi";
 import { FaComment } from "react-icons/fa";
+import {BsFillPencilFill} from "react-icons/bs";
+import {socket} from "../socket/Socket";
+
 const Post = () => {
-  const { totalposts, isLoading, user, updateTotalPosts } = UseGlobalContext();
-  // const [totallikes, setTotallikes] = useState([]);
+  const { totalposts, isLoading, user, updateTotalPosts} = UseGlobalContext();
   const [commentsIcon, setCommentsIcon] = useState(false);
 
+  useEffect(() => {
+    socket.emit("setup", user?._id);
+    socket.on("connected");
+  }, []);
+  
+  
 
   const pullLike = async (post) => {
     try {
@@ -20,30 +28,15 @@ const Post = () => {
         },
       });
       const result = await data.json();
-      console.log(result);
       if (result.likes) {
-        console.log(totalposts);
-        let updatedPost = totalposts.map((postt) => {
-          if (postt._id === post._id) {
-            let userr = postt.likes;
-            console.log(user._id);
-            return {
-              ...postt,
-              likes: userr.filter((l) => l !== user._id),
-            };
-          } else {
-            return postt;
-          }
-        });
-        console.log(updatedPost);
-        updateTotalPosts(updatedPost);
+        socket.emit("new unlike",result);
       }
     } catch (error) {
       console.log(error);
     }
   };
+
   const clickLikes = async (post) => {
-    console.log(post, user._id);
     try {
       let data = await fetch("http://localhost:5000/posts/likes", {
         method: "post",
@@ -53,23 +46,8 @@ const Post = () => {
         },
       });
       data = await data.json();
-      console.log(data);
       if (data.likes) {
-        const dataLikes = data.likes;
-        let updatedPost = totalposts.map((postt) => {
-          if (postt._id === post._id) {
-            let userr = postt.likes;
-            console.log(userr);
-            return {
-              ...postt,
-              likes: [...userr, dataLikes[dataLikes.length - 1]], // add new user to existing users
-            };
-          } else {
-            return postt;
-          }
-        });
-        console.log(updatedPost);
-        updateTotalPosts(updatedPost);
+        socket.emit("new like",data);
       } else {
         pullLike(post);
       }
@@ -77,6 +55,46 @@ const Post = () => {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    
+    if(totalposts?.length>=1){
+      socket.on("like received",(likeReceived) => {
+        let dataLikes = likeReceived.likes;
+           let updatedPost = totalposts.map((postt) => {
+             if (postt._id === likeReceived._id) {
+               let userr = postt.likes;
+               return {
+                 ...postt,
+                 likes: [...userr, dataLikes[dataLikes.length - 1]], // add new user to existing users
+               };
+             } else {
+               return postt;
+             }
+           });
+           updateTotalPosts(updatedPost);
+       })
+    }
+
+  })
+
+  useEffect(() =>{
+
+   if(totalposts?.length>=1){
+    socket.on("unlike received",(likeReceived) => {
+      let updatedPost = totalposts.map((postt) => {
+        if (postt._id === likeReceived._id) {
+          return {
+            ...likeReceived
+          };
+        } else {
+          return postt;
+        }
+      });
+      updateTotalPosts(updatedPost);
+    })
+   }
+  });
 
   return isLoading ? (
     <div className="center1">
@@ -113,12 +131,13 @@ const Post = () => {
                   </Link>
                 </p>
                 <div className="likesAndComments"  >
-                  <div className="likes" onClick={() => clickLikes(post)}><FcLike/><span className="likes-count">
+                  <div className="likes" onClick={() => clickLikes(post)}><GiSelfLove className={post?.likes?.includes(user._id) ? "GroundRed" : "GroundWhite"}/><span className="likes-count">
                     {post?.likes?.length}
                   </span></div>
                   <div className="commentIcon" onClick={()=>setCommentsIcon(!commentsIcon)}>
-                    <Link className="link" to={`/comment/${_id}`}><FaComment style={{color:"white"}}/></Link>
-                   <span className="likes-count">{post?.comments?.length}</span>
+                    <Link className="link" to={`/comment/${_id}`}><FaComment style={{color:"white"}}/> <span className="likes-count"><BsFillPencilFill/></span></Link>
+                   {/* <span className="likes-count">{post?.comments?.length}</span> */}
+                   
                   </div>
                 </div>
                 <span className="postDate">

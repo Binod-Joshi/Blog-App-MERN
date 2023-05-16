@@ -1,5 +1,6 @@
 import { createContext, useContext, useReducer, useState } from "react";
 import reducer from "./Reducer";
+import { socket } from "socket.io-client";
 
 export const Context = createContext();
 
@@ -8,6 +9,7 @@ export const ContextPro = ({ children }) => {
   const storedUser = JSON.parse(localStorage.getItem("user")); //The ContextPro component runs every time the UseGlobalContext component is used to access the context values.
   const [showPopUp, setShowPopUp] = useState(false);
   const [login, setLogin] = useState(false);
+  const [comments,setcomments] = useState([]);
 
   const initialState = {
     isLoading: true,
@@ -125,6 +127,7 @@ export const ContextPro = ({ children }) => {
     allposts = await allposts.json();
     // console.log(allposts);
     dispatch({ type: "posts", payload: allposts });
+    
   };
 
   const updateTotalPosts = async (updatedPost) => {
@@ -146,6 +149,8 @@ export const ContextPro = ({ children }) => {
           getTotalPost,
           login,
           updateTotalPosts,
+          comments,
+          setcomments
         }}
       >
         {children}
