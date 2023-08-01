@@ -6,7 +6,7 @@ import {BiUserCircle} from "react-icons/bi";
 
 
 const Register = () => {
-  const { registerClicked,user,login } = UseGlobalContext();
+  const { registerClicked,user,login,response } = UseGlobalContext();
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -108,6 +108,7 @@ const Register = () => {
         <button className="registerButton" type="onsubmit">
         {login?<div className="load"></div>:"Register"}
         </button>
+        <p className='errorlogin'>{response}</p>
       </form>
       <button className="registerLoginButton">
         <Link to="/login" className="link">

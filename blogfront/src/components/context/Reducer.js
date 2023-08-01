@@ -5,6 +5,11 @@ const reducer = (state, action) => {
         isLoading: false,
         user: action.payload,
       };
+      case "registeredfailed":
+        return {
+          isLoading: true,
+          response: action.payload,
+        };
     case "login":
       return {
         isLoading: false,

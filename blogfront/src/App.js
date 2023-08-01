@@ -21,7 +21,6 @@ import {
 } from "react-router-dom";
 
 function App() {
-  const {user} = UseGlobalContext();
   const redirectHandler = (link) =>{
     window.open(link,'_blank');
   }

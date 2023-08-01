@@ -38,7 +38,7 @@ const Write = () => {
 
   const publish = async (e) => {
     e.preventDefault();
-    let post = await fetch("http://localhost:5000/posts", {
+    let post = await fetch(`${process.env.REACT_APP_BACKEND_URL}/posts`, {
       method: "post",
       body: JSON.stringify({title,desc,phot,userId,username}),
       headers: {

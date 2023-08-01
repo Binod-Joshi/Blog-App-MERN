@@ -14,13 +14,18 @@ const SIngleComments = () => {
 
     useEffect(() => {
       socket.emit("setup", user);
-      socket.on("connected");
+      socket.on('connected', () => {
+        console.log('Connected event received from the server.');
+      });
+      return () => {
+        socket.off('connected');
+      };
     },[]);
     let posts = totalposts;
 
     useEffect(() => {
         const singlePost = async () => {
-          let post = await fetch(`http://localhost:5000/posts/${params.postId}`, {
+          let post = await fetch(`${process.env.REACT_APP_BACKEND_URL}/posts/${params.postId}`, {
             method: "get",
           });
           post = await post.json();
@@ -35,7 +40,7 @@ const SIngleComments = () => {
     const insideSendComments =async() => {
         if(text){
             setText("");
-            let data = await fetch("http://localhost:5000/posts/comments",{
+            let data = await fetch(`${process.env.REACT_APP_BACKEND_URL}/posts/comments`,{
                 method:"post",
                 body:JSON.stringify({userId:user._id,postId:params.postId,text}),
                 headers:{
@@ -84,7 +89,7 @@ const SIngleComments = () => {
 
     const insideDelete = async(id) => {
       try {
-        let data = await fetch("http://localhost:5000/posts/deleteComment",{
+        let data = await fetch(`${process.env.REACT_APP_BACKEND_URL}/posts/deleteComment`,{
           method:"post",
           body:JSON.stringify({userId:user._id,postId:post._id,commentId:id}),
           headers:{

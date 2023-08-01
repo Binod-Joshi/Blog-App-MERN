@@ -20,7 +20,7 @@ const SinglePost = () => {
   useEffect(() => {
       const singlePost = async () => {
         setLoading(true);
-        let post = await fetch(`http://localhost:5000/posts/${params.postId}`, {
+        let post = await fetch(`${process.env.REACT_APP_BACKEND_URL}/posts/${params.postId}`, {
           method: "get",
         });
         post = await post.json();
@@ -33,7 +33,7 @@ const SinglePost = () => {
   }, [params]);
 
   const updatePost = async () => {
-    let post = await fetch(`http://localhost:5000/posts/${params.postId}`, {
+    let post = await fetch(`${process.env.REACT_APP_BACKEND_URL}/posts/${params.postId}`, {
       method: "put",
       body: JSON.stringify({ id, title, desc }),
       headers: {
@@ -46,7 +46,7 @@ const SinglePost = () => {
   };
 
   const deletePost = async () => {
-    await fetch(`http://localhost:5000/posts/${params.postId}`, {
+    await fetch(`${process.env.REACT_APP_BACKEND_URL}/posts/${params.postId}`, {
       method: "delete",
     });
     navigate("/");

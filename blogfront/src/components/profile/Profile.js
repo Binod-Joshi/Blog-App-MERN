@@ -13,7 +13,7 @@ const Profile = () => {
         const getPosts = async () => {
           setLoading(true)
           if (user && user._id) {
-            const response = await fetch(`http://localhost:5000/posts/user/${user._id}`);
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/posts/user/${user._id}`);
             const posts = await response.json();
             setLoading(false);
             setPostsOfUser(posts);

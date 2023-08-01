@@ -72,11 +72,12 @@ router.get("/user/:id",async(req,res) => {
 router.get("/", async (req, res) => {
   const username = req.query.user;
   const catName = req.query.cat; // here cat mean category.
+  console.log(username,catName);
   try {
     let posts;
-    if (username) {
-      posts = await Post.find(username); //mean {username:username} but here both are same so.
-    } else if (catName) {
+    if (username !== undefined && username !== null && username !== '') {
+      posts = await Post.find({ username });
+    }else if ( catName !== undefined && catName !== null && catName !== '') {
       posts = await Post.find({
         categories: {
           $in: [catName],

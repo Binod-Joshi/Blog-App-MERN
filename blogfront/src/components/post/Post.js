@@ -13,14 +13,19 @@ const Post = () => {
 
   useEffect(() => {
     socket.emit("setup", user?._id);
-    socket.on("connected");
+    socket.on('connected', () => {
+      console.log('Connected event received from the server.');
+    });
+    return () => {
+      socket.off('connected');
+    };
   }, []);
   
   
 
   const pullLike = async (post) => {
     try {
-      const data = await fetch("http://localhost:5000/posts/unlikes", {
+      const data = await fetch(`${process.env.REACT_APP_BACKEND_URL}/posts/unlikes`, {
         method: "post",
         body: JSON.stringify({ postId: post._id, userId: user._id }),
         headers: {
@@ -38,7 +43,7 @@ const Post = () => {
 
   const clickLikes = async (post) => {
     try {
-      let data = await fetch("http://localhost:5000/posts/likes", {
+      let data = await fetch(`${process.env.REACT_APP_BACKEND_URL}/posts/likes`, {
         method: "post",
         body: JSON.stringify({ postId: post._id, userId: user._id }),
         headers: {
@@ -56,12 +61,14 @@ const Post = () => {
     }
   };
 
+  console.log(totalposts);
+
   useEffect(() => {
     
     if(totalposts?.length>=1){
       socket.on("like received",(likeReceived) => {
         let dataLikes = likeReceived.likes;
-           let updatedPost = totalposts.map((postt) => {
+           let updatedPost = totalposts?.map((postt) => {
              if (postt._id === likeReceived._id) {
                let userr = postt.likes;
                return {

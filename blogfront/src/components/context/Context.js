@@ -1,6 +1,5 @@
 import { createContext, useContext, useReducer, useState } from "react";
 import reducer from "./Reducer";
-import { socket } from "socket.io-client";
 
 export const Context = createContext();
 
@@ -16,6 +15,7 @@ export const ContextPro = ({ children }) => {
     user: storedUser || null,
     totalposts: [],
     error: "",
+    response:"",
   };
   const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -28,7 +28,7 @@ export const ContextPro = ({ children }) => {
 
   const registerClicked = async ({ navigate, username, email, password }) => {
     setLogin(true);
-    let user = await fetch("http://localhost:5000/auth/register", {
+    let user = await fetch(`${process.env.REACT_APP_BACKEND_URL}/auth/register`, {
       method: "post",
       body: JSON.stringify({ username, email, password }),
       headers: {
@@ -42,14 +42,20 @@ export const ContextPro = ({ children }) => {
       navigate("/");
       setLogin(false);
     } else {
+      dispatch({ type: "registeredfailed", payload: user.result });
       setLogin(false);
+      const timeout = setTimeout(() => {
+        setTimeoutsId("");
+        dispatch({ type: "registeredfailed", payload: "" });
+      }, 5000);
+      return () => clearTimeout(timeout);
     }
   };
 
   const loginClicked = async ({ navigate, e, username, password }) => {
     e.preventDefault();
     setLogin(true);
-    let user = await fetch("http://localhost:5000/auth/login", {
+    let user = await fetch(`${process.env.REACT_APP_BACKEND_URL}/auth/login`, {
       method: "post",
       body: JSON.stringify({ username, password }),
       headers: {
@@ -57,7 +63,7 @@ export const ContextPro = ({ children }) => {
       },
     });
     user = await user.json();
-    if (user._id) {
+    if (user?._id) {
       await saveUser(user);
       dispatch({ type: "login", payload: user });
       navigate("/");
@@ -72,7 +78,6 @@ export const ContextPro = ({ children }) => {
         setTimeoutsId("");
         dispatch({ type: "loginfailed", payload: "" });
       }, 5000);
-      console.log(state.error);
       setTimeoutsId(newTimeoutId);
     }
   };
@@ -97,12 +102,10 @@ export const ContextPro = ({ children }) => {
     password,
     profilePic,
   }) => {
-    console.log(id)
     const fields = password
       ? { username, email, password, profilePic }
       : { username, email, profilePic };
-    console.log(id);
-    let user = await fetch(`http://localhost:5000/users/${id}`, {
+    let user = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/${id}`, {
       method: "put",
       body: JSON.stringify(fields),
       headers: {
@@ -110,7 +113,6 @@ export const ContextPro = ({ children }) => {
       },
     });
     user = await user.json();
-    console.log(user);
     if (user._id) {
       localStorage.setItem("user", JSON.stringify(user));
       dispatch({ type: "update", payload: user });
@@ -121,11 +123,10 @@ export const ContextPro = ({ children }) => {
   //get total posts
   const getTotalPost = async () => {
     dispatch({ type: "loading" });
-    let allposts = await fetch("http://localhost:5000/posts", {
+    let allposts = await fetch(`${process.env.REACT_APP_BACKEND_URL}/posts`, {
       method: "get",
     });
     allposts = await allposts.json();
-    // console.log(allposts);
     dispatch({ type: "posts", payload: allposts });
     
   };
