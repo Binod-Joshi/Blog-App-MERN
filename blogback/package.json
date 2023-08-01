@@ -4,6 +4,8 @@
   "description": "server site of blog",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon index.js",
+    "build":"npm i",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "binod joshi",
