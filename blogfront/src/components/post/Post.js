@@ -10,7 +10,7 @@ import {socket} from "../socket/Socket";
 const Post = () => {
   const { totalposts, isLoading, user, updateTotalPosts, getTotalPost} = UseGlobalContext();
   const [commentsIcon, setCommentsIcon] = useState(false);
-  
+
   useEffect(()=>{
     getTotalPost();
   },[])
@@ -64,8 +64,6 @@ const Post = () => {
       console.log(error);
     }
   };
-
-  console.log(totalposts);
 
   useEffect(() => {
     
