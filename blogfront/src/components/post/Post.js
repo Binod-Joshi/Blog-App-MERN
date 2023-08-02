@@ -8,8 +8,12 @@ import {BsFillPencilFill} from "react-icons/bs";
 import {socket} from "../socket/Socket";
 
 const Post = () => {
-  const { totalposts, isLoading, user, updateTotalPosts} = UseGlobalContext();
+  const { totalposts, isLoading, user, updateTotalPosts, getTotalPost} = UseGlobalContext();
   const [commentsIcon, setCommentsIcon] = useState(false);
+  
+  useEffect(()=>{
+    getTotalPost();
+  },[])
 
   useEffect(() => {
     socket.emit("setup", user?._id);
