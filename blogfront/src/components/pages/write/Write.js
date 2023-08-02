@@ -13,7 +13,7 @@ const Write = () => {
   const [phot, setPhot] = useState("");
   const [link,setLink] = useState(false);
   const navigate = useNavigate();
-  const userId = user._id;
+  const userId = user?._id;
   const username = user.username;
 
   const postUpload = async(e) => {

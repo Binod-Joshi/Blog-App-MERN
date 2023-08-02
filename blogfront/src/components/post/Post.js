@@ -27,7 +27,7 @@ const Post = () => {
     try {
       const data = await fetch(`${process.env.REACT_APP_BACKEND_URL}/posts/unlikes`, {
         method: "post",
-        body: JSON.stringify({ postId: post._id, userId: user._id }),
+        body: JSON.stringify({ postId: post?._id, userId: user?._id }),
         headers: {
           "Content-Type": "application/json",
         },
@@ -45,7 +45,7 @@ const Post = () => {
     try {
       let data = await fetch(`${process.env.REACT_APP_BACKEND_URL}/posts/likes`, {
         method: "post",
-        body: JSON.stringify({ postId: post._id, userId: user._id }),
+        body: JSON.stringify({ postId: post?._id, userId: user?._id }),
         headers: {
           "Content-Type": "application/json",
         },
@@ -139,7 +139,7 @@ const Post = () => {
                   </Link>
                 </p>
                 <div className="likesAndComments"  >
-                  <div className="likes" onClick={() => clickLikes(post)}><GiSelfLove className={post?.likes?.includes(user._id) ? "GroundRed" : "GroundWhite"}/><span className="likes-count">
+                  <div className="likes" onClick={() => clickLikes(post)}><GiSelfLove className={post?.likes?.includes(user?._id) ? "GroundRed" : "GroundWhite"}/><span className="likes-count">
                     {post?.likes?.length}
                   </span></div>
                   <div className="commentIcon" onClick={()=>setCommentsIcon(!commentsIcon)}>

@@ -8,7 +8,7 @@ import { useNavigate, Link } from "react-router-dom";
 
 const Setting = () => {
   const { user, updatehandler } = UseGlobalContext();
-  const id = user._id;
+  const id = user?._id;
   console.log(id);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");

@@ -42,7 +42,7 @@ const SIngleComments = () => {
             setText("");
             let data = await fetch(`${process.env.REACT_APP_BACKEND_URL}/posts/comments`,{
                 method:"post",
-                body:JSON.stringify({userId:user._id,postId:params.postId,text}),
+                body:JSON.stringify({userId:user?._id,postId:params.postId,text}),
                 headers:{
                     "Content-Type":"application/json"
                 },
@@ -91,7 +91,7 @@ const SIngleComments = () => {
       try {
         let data = await fetch(`${process.env.REACT_APP_BACKEND_URL}/posts/deleteComment`,{
           method:"post",
-          body:JSON.stringify({userId:user._id,postId:post._id,commentId:id}),
+          body:JSON.stringify({userId:user?._id,postId:post._id,commentId:id}),
           headers:{
             "Content-Type":"application/json",
           }
@@ -106,7 +106,7 @@ const SIngleComments = () => {
     }
     const deleteComment = async(comment) => {
       const id = comment._id;
-      if(post?.userId === user._id || comment.postedBy._id === user._id){
+      if(post?.userId === user?._id || comment.postedBy._id === user?._id){
         insideDelete(id);
         console.log("your post or your comment");
         return;
@@ -150,7 +150,7 @@ const SIngleComments = () => {
             <div key={index} style={{display:"flex",flexDirection:"column",gap:"10px",padding:"10px"}}>
               <div  className="commentSection">
                 <div className="commentUsername">By {comment?.postedBy?.username}</div>
-                <div className="commentText">:{comment?.text} <span onClick={() => deleteComment(comment)} style={{color:"red",cursor:"pointer",fontSize:"large"}} className={(post?.userId === user._id || comment.postedBy._id === user._id)?"displayDelete":"displayNone"}><MdDelete/></span></div>
+                <div className="commentText">:{comment?.text} <span onClick={() => deleteComment(comment)} style={{color:"red",cursor:"pointer",fontSize:"large"}} className={(post?.userId === user?._id || comment.postedBy._id === user?._id)?"displayDelete":"displayNone"}><MdDelete/></span></div>
                 
             </div>
             </div>

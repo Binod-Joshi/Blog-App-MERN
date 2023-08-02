@@ -7,7 +7,7 @@ import { UseGlobalContext } from "../context/Context";
 
 const SinglePost = () => {
   const { user} = UseGlobalContext();
-  const id = user._id;
+  const id = user?._id;
   const params = useParams();
   const navigate = useNavigate();
   const [post, setPost] = useState("");
@@ -105,7 +105,7 @@ const SinglePost = () => {
         <img src={post.phot} alt="" className="singlePostImg" />
         <h1 className="singlePostTitle">
           {post.title}
-          {user._id === post.userId ? (
+          {user?._id === post.userId ? (
             <div className="singlePostEdit">
               <FaUserEdit
                 className="singlePostIcon"

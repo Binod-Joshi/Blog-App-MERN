@@ -12,8 +12,8 @@ const Profile = () => {
     useEffect(() => {
         const getPosts = async () => {
           setLoading(true)
-          if (user && user._id) {
-            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/posts/user/${user._id}`);
+          if (user && user?._id) {
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/posts/user/${user?._id}`);
             const posts = await response.json();
             setLoading(false);
             setPostsOfUser(posts);
@@ -44,7 +44,7 @@ const Profile = () => {
     </div>:<div className='postOfTheUser'>
       <div className="postt">
       {postsOfUser &&
-        postsOfUser.map((post, index) => {
+        postsOfUser?.map((post, index) => {
           const { title, desc, phot, _id, username } = post;
           return (
             <div className="post" key={index}>

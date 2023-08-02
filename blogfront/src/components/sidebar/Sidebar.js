@@ -14,7 +14,7 @@ const Sidebar = () => {
     <div className='sidebar'>
       <div className="sidebarItem">
         <span className="sidebarTitle">About me</span>
-        <img src={user.profilePic} alt="" />
+        <img src={user?.profilePic} alt="" />
         <p>{user.username}</p>
       </div>
       <div className="sidebarItem">
