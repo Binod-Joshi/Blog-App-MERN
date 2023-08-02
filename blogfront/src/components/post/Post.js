@@ -131,6 +131,7 @@ const Post = () => {
                   <Link className="link" to={`/post/${_id}`}>
                     {title}
                   </Link>
+                  
                 </span>
                 <p>
                   <Link className="link" to={`/post/${_id}`}>
