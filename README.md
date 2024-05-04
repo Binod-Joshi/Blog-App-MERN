@@ -31,7 +31,7 @@ The Blog App is a web-based application built using the MERN (MongoDB, Express.j
 ## Installation
 
 ```bash
-git clone https://blogrightnoww.netlify.app/login
+git clone https://github.com/Binod-Joshi/Blog-App-MERN.git
 ```
 
 Open 2 terminals in separate windows/tabs.
