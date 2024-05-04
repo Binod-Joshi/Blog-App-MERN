@@ -1,9 +1,64 @@
 # Blog-App-MERN
-https://blogrightnoww.netlify.app/login
 
-The blog app allows users to sign up, log in, and log out, and provides functionality to manage their accounts by updating or deleting them. Users can also create, update, and delete their blog posts, giving them full control over their content. This blog app is built using the MERN stack, which includes MongoDB, Express.js, React, and Node.js.
+## Live
 
-In this blog app you can also able to like and comment in realtime.
+Link: https://blogrightnoww.netlify.app/login
+## About
 
-#Installation
-https://github.com/Binod-Joshi/Blog-App-MERN.git
+The Blog App is a web-based application built using the MERN (MongoDB, Express.js, React.js, Node.js) stack and Socket.io.
+
+## Features
+
+- #### User authentication:
+  Sign up, Log in, Log out.
+
+- #### Account management:
+  Update account information, Delete account
+- #### Blog post management:
+  Create blog posts, Update blog posts, Delete blog posts.
+
+- ### Real-time interaction:
+  Real-time liking functionality for blog posts,  Real-time commenting feature for blog posts.
+
+## Technologies Used
+
+- Frontend: React.js, Material UI, Redux
+- Backend: Node.js, Express.js
+- Database: MongoDB
+- Realtime: Socket.io
+
+## Installation
+
+```bash
+git clone https://blogrightnoww.netlify.app/login
+```
+
+Open 2 terminals in separate windows/tabs.
+
+Terminal 1: Setting Up Backend
+
+```bash
+cd backend
+npm install
+npm start
+```
+
+Create a file called .env in the backend folder. Inside it write this :
+
+```bash
+MONGO_URL = mongodb://127.0.0.1/blogapp
+```
+Instead of this link write your database link.
+
+Terminal 2: Setting Up Frontend
+
+```bash
+cd frontend
+npm install
+npm start
+```
+Now, navigate to localhost:3000 in your browser. The Backend API will be running at localhost:5000.
+
+## Deployment
+- Render - server side
+- Netlify - client side
