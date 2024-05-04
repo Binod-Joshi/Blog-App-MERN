@@ -39,7 +39,7 @@ Open 2 terminals in separate windows/tabs.
 Terminal 1: Setting Up Backend
 
 ```bash
-cd backend
+cd blogback
 npm install
 npm start
 ```
@@ -54,7 +54,7 @@ Instead of this link write your database link.
 Terminal 2: Setting Up Frontend
 
 ```bash
-cd frontend
+cd blogfront
 npm install
 npm start
 ```
