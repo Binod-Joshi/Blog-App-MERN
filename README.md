@@ -1,8 +1,9 @@
 # Blog-App-MERN
 
-## Live
-
-Link: https://blogrightnoww.netlify.app/login
+## Live link
+```bash
+https://blogrightnoww.netlify.app/login
+```
 ## About
 
 The Blog App is a web-based application built using the MERN (MongoDB, Express.js, React.js, Node.js) stack and Socket.io.
