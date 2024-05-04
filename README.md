@@ -23,7 +23,7 @@ The Blog App is a web-based application built using the MERN (MongoDB, Express.j
 
 ## Technologies Used
 
-- Frontend: React.js, Material UI, Redux
+- Frontend: React.js,
 - Backend: Node.js, Express.js
 - Database: MongoDB
 - Realtime: Socket.io
