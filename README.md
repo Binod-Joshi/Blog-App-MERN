@@ -48,6 +48,7 @@ Create a file called .env in the backend folder. Inside it write this :
 
 ```bash
 MONGO_URL = mongodb://127.0.0.1/blogapp
+FRONTEND_URL = http://localhost:3000  // use your frontend url after hosting
 ```
 Instead of this link write your database link.
 
