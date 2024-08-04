@@ -74,12 +74,13 @@ const Write = () => {
         <div className="writeFormGroup">
           <input
             type="text"
-            placeholder="title"
+            placeholder="Enter a title"
             className="writeInput"
             autoFocus={true}
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             required
+            style={{marginBottom:"10px"}}
           />
         </div>
         <div className="writeFormGroup">
@@ -88,6 +89,8 @@ const Write = () => {
             className="writeInput writeText"
             value={desc}
             onChange={(e) => setDesc(e.target.value)}
+            
+            style={{marginBottom:"50px"}}
           ></textarea>
         </div>
         <button className="writeSubmit">Publish</button>

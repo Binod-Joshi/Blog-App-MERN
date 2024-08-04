@@ -76,14 +76,18 @@
     font-family: "Lora", sans-serif;
     border: none;
     width: 100%;
+    padding: 10px;
+    border-radius: 10px;
     }
   .singlePostDesc1 {
-    background-color: gray;
+    background-color: rgba(178, 171, 171, 0.825);
     color: black;
     font-size: 18px;
     line-height: 25px;
     border: none;
     width: 100%;
+    padding: 15px;
+    border-radius: 10px;
     
   }
   .updatePostbutton{
@@ -94,6 +98,8 @@
     font-family: "Varela Round", Arial, Helvetica, sans-serif;
     padding: 10px;
     cursor: pointer;
+    border-radius: 5px;
+    border: none;
   }
   .updatePostbutton:hover{
     padding: 11px;

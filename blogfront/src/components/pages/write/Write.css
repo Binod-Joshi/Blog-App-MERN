@@ -1,5 +1,8 @@
 .write {
     padding-top: 50px;
+    background-image: url("https://images.pexels.com/photos/24823063/pexels-photo-24823063/free-photo-of-abstract-background-with-different-shadows-of-blue.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
+    background-repeat: no-repeat;
+    background-size: cover;
   }
   
   .writeImg {
@@ -22,8 +25,8 @@
   }
   
   .writeIcon {
-    width: 25px;
-    height: 25px;
+    width: 35px;
+    height: 35px;
     font-size: 20px;
     border: 1px solid;
     border-radius: 50%;
@@ -43,7 +46,11 @@
     margin-top: 10px;
     border-radius: 15px;
     margin-left: 10px;
+    background-color: #f5f5f529;
+    border: 1px solid black;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add this line for shadow */
   }
+  
   
   .writeInput::placeholder {
     color: rgb(189, 185, 185);
@@ -66,7 +73,7 @@
     top: 20px;
     right: 50px;
     color: white;
-    background-color: teal;
+    background-color: rgb(0, 76, 255);
     padding: 10px;
     border: none;
     border-radius: 10px;
@@ -76,7 +83,7 @@
     align-items: center;
   }
   .writeSubmit:hover{
-    background-color: rgb(0, 76, 255);
+    background-color: teal;
   }
   
   @media screen and (max-width:1024px){

@@ -22,8 +22,8 @@ const Topbar = () => {
   }
   return (
     <>
-    <div className="top">
-      {user? (
+   
+   {user && ( <div className="top">
         <>
           <div className="topleft">
             <FaFacebookSquare className="topIcons" />
@@ -72,11 +72,8 @@ const Topbar = () => {
             </>
           </div>
         </>
-      ) : (
-        <div className="center">Blog</div>
-      )}
       
-    </div>
+    </div>      )}
     {showPopUp && (
         <div className="logouts">
           <div className="logout">

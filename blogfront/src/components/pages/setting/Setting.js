@@ -66,7 +66,7 @@ const Setting = () => {
           </span>
         </div>
         <form className="settingsForm" onSubmit={updatehandlers}>
-          <label>Profile Picture</label>
+          <h2>Profile Picture</h2>
 
           <div className="settingsPP">
             <img src={profilePic} alt="" />
@@ -81,27 +81,27 @@ const Setting = () => {
               onChange={imageUpload}
             />
           </div>
-          <label>Username</label>
+          <h2 style={{marginTop:"10px"}}>Username</h2>
           <input
-            style={{ color: "black" }}
+            style={{ color: "black",padding:"10px",borderRadius:"10px",fontSize:"18px" }}
             type="text"
             placeholder="username"
             name="name"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
-          <label>Email</label>
+          <h2 style={{marginTop:"10px"}}>Email</h2>
           <input
-            style={{ color: "black" }}
+            style={{ color: "black",padding:"10px",borderRadius:"10px",fontSize:"18px" }}
             type="email"
             placeholder="email"
             name="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-          <label>Password</label>
+          <h2 style={{marginTop:"10px"}}>Password</h2>
           <input
-            style={{ color: "black" }}
+            style={{ color: "black",padding:"10px",borderRadius:"10px",fontSize:"18px" }}
             type="password"
             placeholder="Password"
             name="password"

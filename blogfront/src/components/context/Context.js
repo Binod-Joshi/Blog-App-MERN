@@ -52,12 +52,12 @@ export const ContextPro = ({ children }) => {
     }
   };
 
-  const loginClicked = async ({ navigate, e, username, password }) => {
+  const loginClicked = async ({ navigate, e, email, password }) => {
     e.preventDefault();
     setLogin(true);
     let user = await fetch(`${process.env.REACT_APP_BACKEND_URL}/auth/login`, {
       method: "post",
-      body: JSON.stringify({ username, password }),
+      body: JSON.stringify({ email, password }),
       headers: {
         "Content-Type": "application/json",
       },
